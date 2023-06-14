@@ -1,8 +1,11 @@
 const express = require("express")
 const app = express()
+const morgan = require("morgan")
 require("dotenv").config()
 
 const PORT = process.env.PORT
+
+app.use(morgan("dev"))
 
 app.get("/", (req,res) => {
     res.send("Server on.")
