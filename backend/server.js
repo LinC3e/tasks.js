@@ -11,10 +11,12 @@ const PORT = process.env.PORT
 // DB connection
 dbConnection()
 
+//Middlewares
+app.use(express.json())
 app.use(morgan("dev"))
 
 // Routes
-app.use('/', authRoutes)
+app.use('/api', authRoutes)
 
 app.get("/", (req,res) => {
     res.send("Server on.")
