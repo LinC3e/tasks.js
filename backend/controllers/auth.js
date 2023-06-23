@@ -63,8 +63,13 @@ const logout = (req,res) => {
     return res.status(200).json({ message: 'Logout succesfully.'})
 }
 
+const profile = (req,res) => {
+    res.send('Profile')
+}
+
 module.exports = {
     register,
     login,
-    logout
+    logout,
+    profile
 }
