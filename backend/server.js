@@ -6,6 +6,7 @@ require("dotenv").config()
 
 const { dbConnection } = require("./database/config")
 const authRoutes = require("./routes/auth")
+const tasksRoutes = require("./routes/tasks")
 
 const PORT = process.env.PORT
 
@@ -19,6 +20,7 @@ app.use(cookieParser())
 
 // Routes
 app.use('/api', authRoutes)
+app.use('/api', tasksRoutes)
 
 app.get("/", (req,res) => {
     res.send("Server on.")
