@@ -11,6 +11,21 @@ const getTasks = async (req,res) => {
     }
 }
 
+// GET SPECIFIC TASK
+const oneTask = async(req,res) => {
+    try {
+        const task = await Task.findById(req.params.id)
+        res.status(200).json({
+            title: task.title,
+            description: task.description,
+            date: task.date
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: error.message })
+    }
+}
+
 // CREATE TASK
 const createTask = async (req,res) => {
     try {
@@ -59,6 +74,7 @@ const updateTask = async(req,res) => {
 
 module.exports = {
     getTasks,
+    oneTask,
     createTask,
     deleteTask,
     updateTask
