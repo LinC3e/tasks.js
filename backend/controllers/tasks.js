@@ -1,5 +1,6 @@
 const Task = require("../models/Task")
 
+// GET ALL TASKS
 const getTasks = async (req,res) => {
     try {
         const tasks = await Task.find()
@@ -33,6 +34,7 @@ const createTask = async (req,res) => {
     }
 }
 
+// DELETE TASK
 const deleteTask = async(req,res) => {
     
     try {
@@ -44,8 +46,20 @@ const deleteTask = async(req,res) => {
     }
 }
 
+// UPDATE TASK 
+const updateTask = async(req,res) => {
+    try {
+        const updatedTask = await Task.findByIdAndUpdate(req.params.id  , { $set: req.body }, { new: true })
+        res.status(200).json(updatedTask)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: error.message })
+    }
+}
+
 module.exports = {
     getTasks,
     createTask,
-    deleteTask
+    deleteTask,
+    updateTask
 }
