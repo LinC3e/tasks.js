@@ -34,8 +34,10 @@ const createTask = async (req,res) => {
         const newTask = new Task({
             title,
             description,
-            date
+            date,
+            user: req.user.id
         })
+        if(!newTask.user) return res.status(500).json({ message: 'User not log in.'})
         const savedTask = newTask.save()
         res.status(200).json({
             title,
