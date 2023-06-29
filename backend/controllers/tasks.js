@@ -26,6 +26,19 @@ const oneTask = async(req,res) => {
     }
 }
 
+// GET USER TASKS
+const userTasks = async(req,res) => {
+    try {
+        const tasks = await Task.find({
+            user: req.user.id,
+        }).populate('user').lean()
+        res.status(200).json(tasks)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: error.message })
+    }
+}
+
 // CREATE TASK
 const createTask = async (req,res) => {
     try {
@@ -77,6 +90,7 @@ const updateTask = async(req,res) => {
 module.exports = {
     getTasks,
     oneTask,
+    userTasks,
     createTask,
     deleteTask,
     updateTask
