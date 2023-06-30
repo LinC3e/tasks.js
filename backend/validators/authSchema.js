@@ -14,7 +14,7 @@ const registerSchema = z.object({
 
     password: z.string({
         required_error: "Password is required.",
-    }).min(5, "Username must be more than 5 characters")
+    }).min(5, "Password must be more than 5 characters")
 
 })
 
@@ -27,7 +27,7 @@ const loginSchema = z.object({
 
     password: z.string({
         required_error: "Password is required.",
-    }).min(5, "Username must be more than 5 characters")
+    }).min(5, "Password must be more than 5 characters")
 })
 
 module.exports = {
