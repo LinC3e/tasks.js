@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const morgan = require("morgan")
 const cookieParser = require("cookie-parser")
+const cors = require("cors")
 require("dotenv").config()
 
 const { dbConnection } = require("./database/config")
@@ -14,6 +15,7 @@ const PORT = process.env.PORT
 dbConnection()
 
 //Middlewares
+app.use(cors())
 app.use(express.json())
 app.use(morgan("dev"))
 app.use(cookieParser())
