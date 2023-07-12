@@ -1,16 +1,25 @@
 import { useForm } from "react-hook-form"
+import { useAuth } from "../context/AuthContext"
 
 function LoginPage() {
 
     const { register, handleSubmit, formState: {errors} } = useForm()
+    const { signin , errors: signinErrors } = useAuth()
 
     const onSubmit = handleSubmit(data => {
-        console.log(data)
+        signin(data)
     })
 
     return (
         <div className='h-[calc(100vh-100px)] flex items-center justify-center'>
             <div className="bg-zinc-800 max-w-md w-full p-16 rounded-md">
+                
+            {
+                signinErrors.map((error, i) => (
+                    <div className='bg-red-500 my-2 p-2' key={i}> {error} </div>
+                ))
+            }
+
                 <h2 className="text-center font-bold">Login Form</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input type="email" placeholder="email@example.com"  {...register("email", { required: true })}
