@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form"
 import { useAuth } from "../context/AuthContext"
+import { Link } from "react-router-dom" 
 
 function LoginPage() {
 
@@ -43,6 +44,11 @@ function LoginPage() {
                     <div className="flex justify-end">
                         <button type='submit' className='my-2 bg-zinc-700 hover:bg-black text-white font-bold py-2 px-4 rounded'>Login</button>
                     </div>
+
+                    <p className="flex gap-x-2 justify-stretch">
+                        Don't have an account? <Link to="/register" className="text-sky-500">Sign up</Link>
+                    </p>
+
                 </form>
             </div>
         </div>
