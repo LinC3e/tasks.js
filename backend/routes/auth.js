@@ -1,7 +1,7 @@
 const express = require('express')
 const authRoutes = express.Router()
 
-const { register, login, logout, profile } = require('../controllers/auth')
+const { register, login, logout, profile, verifyToken } = require('../controllers/auth')
 const isAuthenticated = require('../middlewares/isAuthenticated')
 // validators
 const validateSchema = require('../middlewares/validator')
@@ -12,5 +12,7 @@ authRoutes.post('/login', validateSchema(loginSchema),login)
 authRoutes.post('/logout', logout)
 // USER
 authRoutes.get('/profile', isAuthenticated ,profile)
+// Verify acc
+authRoutes.get('/verify', verifyToken)
 
 module.exports = authRoutes
