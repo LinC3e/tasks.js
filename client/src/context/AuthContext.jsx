@@ -1,6 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { registerReq, loginReq, verifyTokenRequest } from "../api/auth";
 import Cookies from "js-cookie"
+import { PropTypes } from 'prop-types';
 
 export const AuthContext = createContext()
 
@@ -90,3 +91,8 @@ export const AuthProvider = ({ children }) => {
         </AuthContext.Provider>
     )
 }
+
+// Prop validation for the TaskProvider component
+AuthProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+};
